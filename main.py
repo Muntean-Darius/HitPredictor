@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import re
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, r2_score
 from sklearn.model_selection import train_test_split, cross_val_score, RandomizedSearchCV # Model evaluation and tuning tools
@@ -77,6 +78,9 @@ df = df.drop(['production_company', 'genre'], axis=1)
 df['star_actor_count'] = df['actors'].apply(count_star_power)
 df['has_star_director'] = df['director'].apply(check_director_power)
 df = df.drop(['actors', 'director'], axis=1)
+
+# Searches the title for any digit (\d) or a colon (:) which usually denotes a sequel/universe
+df['is_franchise'] = df['title'].apply(lambda x: 1 if re.search(r'([:\d])', str(x)) else 0)
 
 # Define X and y
 X = df.drop(['worlwide_gross_income', 'title'], axis=1)
