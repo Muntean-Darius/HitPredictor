@@ -3,7 +3,7 @@ import numpy as np
 import re
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, r2_score
-from sklearn.model_selection import train_test_split, cross_val_score, RandomizedSearchCV # Model evaluation and tuning tools
+from sklearn.model_selection import train_test_split, cross_val_score, RandomizedSearchCV
 
 # --- Feature Engineering Setup ---
 a_list_actors = [
@@ -39,7 +39,7 @@ def check_director_power(director_string):
     return 0
 
 # --- Data Loading and Cleaning ---
-df = pd.read_csv('IMDb movies.csv', low_memory=False)
+df = pd.read_csv('data/IMDb movies.csv', low_memory=False)
 
 columns_to_keep = ['title', 'date_published', 'genre', 'budget', 'worlwide_gross_income', 'metascore', 'production_company','actors', 'director']
 df = df[columns_to_keep]
